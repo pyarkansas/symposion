@@ -1,0 +1,54 @@
+{% extends "site_base.html" %}
+
+{% load proposal_tags %}
+{% load thumbnail %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Proposals" %}{% endblock %}
+
+{% block body %}
+    <div class="row">
+    <div class="span9">
+                The following is a list of <strong>accepted</strong> tutorials and talks that will be presented at pyArkansas 2012.
+			<h3>{% trans "Tutorials" %}</h3>
+			{% for proposal in proposal_list %}			
+				<ul>
+				{% if proposal.kind_id == 1 %}
+				    <li><strong>{{ proposal.title }}</strong> by <strong>{{ proposal.speaker.name }}</strong>: {{ proposal.description }}
+					<strong>Audience level:</strong>
+                        {% if proposal.tutorialproposal.audience_level == 1 %}
+                            Novice
+						{% elif proposal.tutorialproposal.audience_level == 2 %}
+							Experienced
+						{% else %}
+							Intermediate
+                        {% endif %}	
+					</li>
+				{% endif %}
+				</ul>
+			{% empty %}
+				<p>No tutorials have been submitted yet.</p>
+			{% endfor %}
+			<h3>{% trans "Talks" %}</h3>
+			{% for proposal in proposal_list %}
+				<ul>
+				{% if proposal.kind_id == 2 %}
+				    <li><strong>{{ proposal.title }}</strong> by <strong>{{ proposal.speaker.name }}</strong>: {{ proposal.description }} 
+                        <strong>Audience level:</strong>
+                        {% if proposal.talkproposal.audience_level == 1 %}
+                            Novice
+						{% elif proposal.talkproposal.audience_level == 2 %}
+							Experienced
+						{% else %}
+							Intermediate
+                        {% endif %}
+                    </li>
+				{% endif %}
+				</ul>
+			{% empty %}
+				<p>No talks have been submitted yet.</p>
+			{% endfor %}
+    </div>
+    </div>
+{% endblock %}
+
