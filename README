@@ -1,4 +1,5 @@
-SYMPOSION
-A Django project for conference websites.
+pyArkansas
 
-A Pinax project sponsored by Eldarion and the Python Software Foundation.
+pyArkansas is a fork of Symposion, a Django Pinax project for conference websites. 
+
+Symposion is sponsored by Eldarian and the Python Software Foundation. 
