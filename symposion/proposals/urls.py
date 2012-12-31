@@ -2,6 +2,7 @@ from django.conf.urls.defaults import *
 
 
 urlpatterns = patterns("symposion.proposals.views",
+    url(r"^$", "list_all_proposals", name="proposal_list"),
     url(r"^submit/$", "proposal_submit", name="proposal_submit"),
     url(r"^submit/(\w+)/$", "proposal_submit_kind", name="proposal_submit_kind"),
     url(r"^(\d+)/$", "proposal_detail", name="proposal_detail"),

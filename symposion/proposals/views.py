@@ -5,9 +5,10 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.http import Http404, HttpResponse, HttpResponseForbidden
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.utils.hashcompat import sha_constructor
 from django.views import static
+from django.template import Context, loader
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -20,6 +21,11 @@ from symposion.utils.mail import send_email
 
 from symposion.proposals.forms import AddSpeakerForm, SupportingDocumentCreateForm
 
+def list_all_proposals(request):
+    proposal_list = ProposalBase.objects.all().select_related()
+    return render(request, "proposals/list_all_proposals.html", {
+        "proposal_list": proposal_list,
+    })
 
 def get_form(name):
     dot = name.rindex('.')
