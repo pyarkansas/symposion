@@ -1,12 +1,17 @@
-from django.shortcuts import render_to_response, redirect, get_object_or_404
+from django.shortcuts import render, render_to_response, redirect, get_object_or_404
 from django.template import RequestContext
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from symposion.sponsorship.forms import SponsorApplicationForm, SponsorDetailsForm, SponsorBenefitsFormSet
-from symposion.sponsorship.models import Sponsor, SponsorBenefit
+from symposion.sponsorship.models import Sponsor, SponsorBenefit, SponsorLevel
 
+def list_all_sponsors(request):
+    sponsor_levels = SponsorLevel.objects.all().select_related()
+    return render(request, "sponsorship/list_all_sponsors.html", {
+        "sponsor_levels": sponsor_levels,
+    })
 
 @login_required
 def sponsor_apply(request):
