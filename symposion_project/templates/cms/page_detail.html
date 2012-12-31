@@ -18,6 +18,15 @@
     <h2>{{ page.title }}</h2>
     
     <div class="page-content">
-        {{ page.body }}
+    {% if page.title == "VENUE" %}
+       <iframe width="600" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?msa=0&amp;msid=204879146047913751316.0004c69ba3e71bec3ee3c&amp;ie=UTF8&amp;t=h&amp;ll=35.075158,-92.456088&amp;spn=0.002634,0.006427&amp;z=17&amp;output=embed"></iframe><br /><small>View <a href="https://maps.google.com/maps/ms?msa=0&amp;msid=204879146047913751316.0004c69ba3e71bec3ee3c&amp;ie=UTF8&amp;t=h&amp;ll=35.075158,-92.456088&amp;spn=0.002634,0.006427&amp;z=17&amp;source=embed" style="color:#0000FF;text-align:left">Brewer-Hegeman Conference Center, UCA</a> in a larger map</small>
+    {% elif page.title == "REGISTRATION" %}
+        <div style="width:100%; text-align:left;" ><iframe  src="http://www.eventbrite.com/tickets-external?eid=3951282392&ref=etckt" frameborder="0" height="192" width="100%" vspace="0" hspace="0" marginheight="5" marginwidth="5" scrolling="auto" allowtransparency="true"></iframe><div style="font-family:Helvetica, Arial; font-size:10px; padding:5px 0 5px; margin:2px; width:100%; text-align:left;" ><a style="color:#ddd; text-decoration:none;" target="_blank" href="http://www.eventbrite.com/r/etckt">Online Ticketing</a><span style="color:#ddd;"> for </span><a style="color:#ddd; text-decoration:none;" target="_blank" href="http://http://pyarkansas.eventbrite.com?ref=etckt">pyArkansas 2012</a> <span style="color:#ddd;">powered by</span> <a style="color:#ddd; text-decoration:none;" target="_blank" href="http://www.eventbrite.com?ref=etckt">Eventbrite</a></div></div>
+    {% elif page.title == "SUBMISSIONS" %}
+	{% load proposal_tags %}
+
+	Some stuff here.
+    {% endif %}
+        {{ page.body|safe }}
     </div>
 {% endblock %}
